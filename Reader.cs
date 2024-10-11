@@ -3,7 +3,7 @@ using System.IO;
 class Reader
 {
     public String[]? test;
-    private List<weapon>? _weapons = new List<weapon>();
+    private List<Weapon>? _weapons = new List<Weapon>();
 
     public Reader()
     {
@@ -14,9 +14,9 @@ class Reader
     {
         String[]? lines = TrySearch("Files\\weapons.txt");
 
-        for (int i = 0; i < lines.Length; i += 3);
+        for (int i = 0; i < lines.Length; i += 3)
         {
-            _weapons.Add(new Weapon(lines[i]))
+            _weapons.Add(new Weapon(lines[i], lines[i + 1], int.Parse(lines[i + 2])));
         }
     }
 

@@ -6,7 +6,7 @@ class Weapon
 
     public String name => _name;
     public String rarity => _rarity;
-    public String damage => _damage;
+    public int damage => _damage;
 
     public Weapon(String _name, String _rarity, int _damage)
     {
