@@ -2,8 +2,9 @@ using System.IO;
 
 class Reader
 {
-    public String[]? test;
     private List<Weapon>? _weapons = new List<Weapon>();
+
+    public List<Weapon>? getWeapons => _weapons;
 
     public Reader()
     {
@@ -16,7 +17,7 @@ class Reader
 
         for (int i = 0; i < lines.Length; i += 3)
         {
-            _weapons.Add(new Weapon(lines[i], lines[i + 1], int.Parse(lines[i + 2])));
+            _weapons?.Add(new Weapon(lines[i], lines[i + 1], int.Parse(lines[i + 2])));
         }
     }
 

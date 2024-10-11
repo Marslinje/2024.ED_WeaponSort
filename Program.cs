@@ -1,6 +1,9 @@
-﻿Reader listTest = new Reader();
+﻿Reader reader = new Reader();
 
-foreach (String line in listTest.test)
+foreach (Weapon weapon in reader.getWeapons)
 {
-    Console.WriteLine(line);
+    Console.WriteLine(weapon.name);
+    Console.WriteLine(weapon.rarity);
+    Console.WriteLine(weapon.damage);
+    Console.WriteLine();
 }
