@@ -1,28 +1,51 @@
 ﻿Reader getWeaponsData = new Reader();
+List<Weapon>? weaponsList = getWeaponsData.getWeapons;
 
-List<Weapon> weaponsList = getWeaponsData.getWeapons;
+StartUser();
 
-Console.WriteLine($"------------------------UNSORTED LIST--------------------------------");
-PrintList(weaponsList);
-//WeaponSetIntBasedValues(weaponsList);
-//WeaponSetAlphabetBasedValues(weaponsList);
-WeaponSetTermBasedValues(weaponsList);
-MergeSort(weaponsList);
-Console.WriteLine($"------------------------SORTED LIST--------------------------------");
-PrintList(weaponsList);
+void StartUser()
+{
+    Console.WriteLine("--- IT'S THE AMAZING WEAPONS GALLERY! ---");
+    Console.WriteLine("Choose the organization method (amazing):");
+    Console.WriteLine("Type '1' for order of the alphabet!");
+    Console.WriteLine("Type '2' for order of rarity!");
+    Console.WriteLine("Type '3' for order of damage!");
+    Console.WriteLine();
 
-void PrintList(List<Weapon> list)
+    Console.Write("YOUR PICK: ");
+    String? pick = Console.ReadLine();
+
+    if (pick == "1")
+        WeaponSetAlphabetBasedValues(weaponsList);
+    else if (pick == "2")
+        WeaponSetTermBasedValues(weaponsList);
+    else if (pick == "3")
+        WeaponSetIntBasedValues(weaponsList);
+    else
+    {
+        pick = "null";
+        Console.WriteLine("I SAID 1, 2 OR 3!");
+    }
+
+    if (pick != "null")
+    {
+        MergeSort(weaponsList);
+        PrintList(weaponsList);
+    }
+}
+
+void PrintList(List<Weapon>? list)
 {
     foreach (Weapon i in list)
     {
-        Console.WriteLine($">>>>>>>>  Value: {i.value}");
         i.PrintWeapon();
+        Console.WriteLine("----");
     }
 }
 
 #region Set Values
 
-void WeaponSetAlphabetBasedValues(List<Weapon> weapons)
+void WeaponSetAlphabetBasedValues(List<Weapon>? weapons)
 {
     foreach (Weapon weapon in weapons)
     {
@@ -32,8 +55,8 @@ void WeaponSetAlphabetBasedValues(List<Weapon> weapons)
     }
 }
 
-//HACK
-void WeaponSetTermBasedValues(List<Weapon> weapons)
+//HACK mayb
+void WeaponSetTermBasedValues(List<Weapon>? weapons)
 {
     foreach (Weapon weapon in weapons)
     {
@@ -49,7 +72,7 @@ void WeaponSetTermBasedValues(List<Weapon> weapons)
     }
 }
 
-void WeaponSetIntBasedValues(List<Weapon> weapons)
+void WeaponSetIntBasedValues(List<Weapon>? weapons)
 {
     foreach (Weapon weapon in weapons)
     {
@@ -59,7 +82,7 @@ void WeaponSetIntBasedValues(List<Weapon> weapons)
 
 #endregion
 
-void MergeSort(List<Weapon> list)
+void MergeSort(List<Weapon>? list)
 {
     // Caso um array tenha 0 ou 1 elementos, ele já está ordenado
     if (list.Count < 2)
