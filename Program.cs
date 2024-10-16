@@ -1,5 +1,6 @@
 ﻿Reader getWeaponsData = new Reader();
 List<Weapon>? weaponsList = getWeaponsData.getWeapons;
+String? choosenOrder = "null";
 
 StartUser();
 
@@ -13,21 +14,8 @@ void StartUser()
     Console.WriteLine();
 
     Console.Write("YOUR PICK: ");
-    String? pick = Console.ReadLine();
-
-    if (pick == "1")
-        WeaponSetAlphabetBasedValues(weaponsList);
-    else if (pick == "2")
-        WeaponSetTermBasedValues(weaponsList);
-    else if (pick == "3")
-        WeaponSetIntBasedValues(weaponsList);
-    else
-    {
-        pick = "null";
-        Console.WriteLine("I SAID 1, 2 OR 3!");
-    }
-
-    if (pick != "null")
+    choosenOrder = Console.ReadLine();
+    if (choosenOrder != "null")
     {
         MergeSort(weaponsList);
         PrintList(weaponsList);
@@ -42,45 +30,6 @@ void PrintList(List<Weapon>? list)
         Console.WriteLine("----");
     }
 }
-
-#region Set Values
-
-void WeaponSetAlphabetBasedValues(List<Weapon>? weapons)
-{
-    foreach (Weapon weapon in weapons)
-    {
-        //Atribui a posição numérica em ASCII do primeiro caractere de 'name' á variavel 'value' em int
-        weapon.value = (int)weapon.getName[0] - 'A'; //subtrai char 'A' para pegar números desde letras maiúsculas
-        //Console.WriteLine(weapon.value);
-    }
-}
-
-//HACK mayb
-void WeaponSetTermBasedValues(List<Weapon>? weapons)
-{
-    foreach (Weapon weapon in weapons)
-    {
-        if (weapon.getRarity == "common")
-            weapon.value = 1;
-            else if (weapon.getRarity == "rare")
-                weapon.value = 2;
-                else if (weapon.getRarity == "epic")
-                    weapon.value = 3;
-                    else
-                        weapon.value = 4;
-        Console.WriteLine(weapon.value);
-    }
-}
-
-void WeaponSetIntBasedValues(List<Weapon>? weapons)
-{
-    foreach (Weapon weapon in weapons)
-    {
-        weapon.value = weapon.getDamage;
-    }
-}
-
-#endregion
 
 void MergeSort(List<Weapon>? list)
 {
@@ -119,17 +68,59 @@ void MergeSort(List<Weapon>? list)
     int ix = 0;// índice final
     while (il < left.Count && ir < right.Count)
     {
-        if (left[il].value < right[ir].value)
+        CompareValues();
+    }
+
+    void CompareValues()
+    {
+        if (choosenOrder == "1") // Alphabet
         {
-            list[ix] = left[il];
-            il++;
+
+            //Comparer(left[il].getName, right[ir].getName);
+            /*
+            {
+                Split(left[il]);
+            }
+            else
+            {
+                Split(right[ir]);
+            }
+            ix++; */
         }
-        else
+        if (choosenOrder == "2") // Rarity
         {
-            list[ix] = right[ir];
-            ir++;
+
+            if ((int?)left[il].getRarity < (int?)right[ir].getRarity)
+            {
+                Split(left[il]);
+                il++;
+            }
+            else
+            {
+                Split(right[ir]);
+                ir++;
+            }
+            ix++;
         }
-        ix++;
+        else if (choosenOrder == "3") // Damage
+        {
+            if (left[il].getDamage < right[ir].getDamage) //Aula 7 bubble generic
+            {
+                Split(left[il]);
+                il++;
+            }
+            else
+            {
+                Split(right[ir]);
+                ir++;
+            }
+            ix++;
+        }
+
+        void Split(Weapon direction)
+        {
+            list[ix] = direction;
+        }
     }
 
     // Por fim é feita a cópia dos elementos restantes dos sub-arrays

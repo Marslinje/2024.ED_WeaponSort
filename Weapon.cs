@@ -1,25 +1,31 @@
 class Weapon
 {
-    private int _value;
     private String _name;
-    private String _rarity;
+    private Rarity _rarity;
     private int _damage;
-
-    public int value
-    {
-        get { return _value; }
-        set { _value = value; }
-    }
+    
+    // Get variables
 
     public String getName => _name;
-    public String getRarity => _rarity;
+    public Rarity getRarity => _rarity;
     public int getDamage => _damage;
+
+    // Constructor
+
+    public enum Rarity
+    {
+        common,
+        rare,
+        epic,
+        legendary
+    }
 
     public Weapon(String _name, String _rarity, int _damage)
     {
         this._name = _name;
-        this._rarity = _rarity;
+        this._rarity = SetEnum(_rarity);
         this._damage = _damage;
+        SetEnum(_rarity);
     }
 
     public void PrintWeapon()
@@ -27,5 +33,10 @@ class Weapon
         Console.WriteLine($"Name: {_name}");
         Console.WriteLine($"Rarity: {_rarity}");
         Console.WriteLine($"Damage: {_damage}");
+    }
+
+    Rarity SetEnum(String stringRarity)
+    {
+        return (Rarity) Enum.Parse(typeof(Rarity), stringRarity);
     }
 }
