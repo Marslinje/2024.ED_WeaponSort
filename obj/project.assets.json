@@ -8,30 +8,24 @@
     "net8.0": []
   },
   "packageFolders": {
-    "C:\\Users\\marcelo.in\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\Whillis\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\marcelo.in\\Documents\\GitHub\\2024.ED_WeaponSort\\Project.csproj",
+      "projectUniqueName": "D:\\Uni\\2024.ED_WeaponSort\\Project.csproj",
       "projectName": "Project",
-      "projectPath": "C:\\Users\\marcelo.in\\Documents\\GitHub\\2024.ED_WeaponSort\\Project.csproj",
-      "packagesPath": "C:\\Users\\marcelo.in\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\marcelo.in\\Documents\\GitHub\\2024.ED_WeaponSort\\obj\\",
+      "projectPath": "D:\\Uni\\2024.ED_WeaponSort\\Project.csproj",
+      "packagesPath": "C:\\Users\\Whillis\\.nuget\\packages\\",
+      "outputPath": "D:\\Uni\\2024.ED_WeaponSort\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\marcelo.in\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\Whillis\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -44,6 +38,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -65,7 +64,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

@@ -75,29 +75,29 @@ void MergeSort(List<Weapon>? list)
     {
         if (choosenOrder == "1") // Alphabet
         {
-
-            //Comparer(left[il].getName, right[ir].getName);
-            /*
+            if (String.Compare(left[il].getName, right[ir].getName) < 0)
             {
-                Split(left[il]);
+                Merge(left[il]);
+                il++;
             }
             else
             {
-                Split(right[ir]);
+                Merge(right[ir]);
+                ir++;
             }
-            ix++; */
+            ix++;
         }
         if (choosenOrder == "2") // Rarity
         {
 
             if ((int?)left[il].getRarity < (int?)right[ir].getRarity)
             {
-                Split(left[il]);
+                Merge(left[il]);
                 il++;
             }
             else
             {
-                Split(right[ir]);
+                Merge(right[ir]);
                 ir++;
             }
             ix++;
@@ -106,18 +106,18 @@ void MergeSort(List<Weapon>? list)
         {
             if (left[il].getDamage < right[ir].getDamage) //Aula 7 bubble generic
             {
-                Split(left[il]);
+                Merge(left[il]);
                 il++;
             }
             else
             {
-                Split(right[ir]);
+                Merge(right[ir]);
                 ir++;
             }
             ix++;
         }
 
-        void Split(Weapon direction)
+        void Merge(Weapon direction)
         {
             list[ix] = direction;
         }
