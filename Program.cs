@@ -17,7 +17,19 @@ void StartUser()
     choosenOrder = Console.ReadLine();
     if (choosenOrder != "null")
     {
-        MergeSort(weaponsList);
+        if (choosenOrder == "3")
+        {
+            MergeSort(weaponsList, SortDamage);
+        }
+        else if (choosenOrder == "2")
+        {
+            MergeSort(weaponsList, SortRarity);
+            
+        }
+        else if (choosenOrder == "1")
+        {
+            MergeSort(weaponsList, SortAlphabet);
+        }
         PrintList(weaponsList);
     }
 }
@@ -31,7 +43,23 @@ void PrintList(List<Weapon>? list)
     }
 }
 
-void MergeSort(List<Weapon>? list)
+
+bool SortDamage(Weapon indexLeft, Weapon indexRight)
+{
+    return indexLeft.getDamage > indexRight.getDamage;
+}
+
+bool SortRarity(Weapon indexLeft, Weapon indexRight)
+{
+    return (int?)indexLeft.getRarity > (int?)indexRight.getRarity;
+}
+
+bool SortAlphabet(Weapon indexLeft, Weapon indexRight)
+{
+    return String.Compare(indexLeft.getName, indexRight.getName) < 0;
+}
+
+void MergeSort(List<Weapon>? list, Func<Weapon, Weapon, bool> SortMethod)
 {
     // Caso um array tenha 0 ou 1 elementos, ele já está ordenado
     if (list.Count < 2)
@@ -57,8 +85,8 @@ void MergeSort(List<Weapon>? list)
 
     // Ordenação dos sub-arrays com o próprio Merge Sort, recursivamente.
     
-    MergeSort(left);
-    MergeSort(right);
+    MergeSort(left, SortMethod);
+    MergeSort(right, SortMethod);
 
     // Após a ordenação, é feita a mesclagem(merge) dos dois sub-arrays, copiando
     //seus valores para o array principal. A cópia é feita retirando o menor dos
@@ -68,60 +96,22 @@ void MergeSort(List<Weapon>? list)
     int ix = 0;// índice final
     while (il < left.Count && ir < right.Count)
     {
-        CompareValues();
+        if (SortMethod(left[il], right[ir]))
+        {
+            Merge(left[il], ref il);
+            }
+            else
+            {
+            Merge(right[ir], ref ir);
+            }
+            ix++;
     }
 
-    void CompareValues()
-    {
-        if (choosenOrder == "1") // Alphabet
+    void Merge(Weapon sortedItem, ref int dir)
         {
-            if (String.Compare(left[il].getName, right[ir].getName) < 0)
-            {
-                Merge(left[il]);
-                il++;
-            }
-            else
-            {
-                Merge(right[ir]);
-                ir++;
-            }
-            ix++;
+            list[ix] = sortedItem;
+            dir++;
         }
-        if (choosenOrder == "2") // Rarity
-        {
-
-            if ((int?)left[il].getRarity < (int?)right[ir].getRarity)
-            {
-                Merge(left[il]);
-                il++;
-            }
-            else
-            {
-                Merge(right[ir]);
-                ir++;
-            }
-            ix++;
-        }
-        else if (choosenOrder == "3") // Damage
-        {
-            if (left[il].getDamage < right[ir].getDamage) //Aula 7 bubble generic
-            {
-                Merge(left[il]);
-                il++;
-            }
-            else
-            {
-                Merge(right[ir]);
-                ir++;
-            }
-            ix++;
-        }
-
-        void Merge(Weapon direction)
-        {
-            list[ix] = direction;
-        }
-    }
 
     // Por fim é feita a cópia dos elementos restantes dos sub-arrays
     while (il < left.Count)
@@ -136,4 +126,9 @@ void MergeSort(List<Weapon>? list)
         ir++;
         ix++;
     }
+}
+
+void QuickSort(List<Weapon>? list)
+{
+    
 }
