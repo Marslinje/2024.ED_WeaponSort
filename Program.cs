@@ -21,21 +21,20 @@ void StartUser()
         if (choosenOrder == "3")
         {
             MergeSort(weaponsList, SortDamage);
+            QuickSort(weaponsList, SortDamage);
         }
         else if (choosenOrder == "2")
         {
             MergeSort(weaponsList, SortRarity);
+            QuickSort(weaponsList, SortRarity);
             
         }
         else if (choosenOrder == "1")
         {
             MergeSort(weaponsList, SortAlphabet);
+            QuickSort(weaponsList, SortAlphabet);
         }
-        else if (choosenOrder == "quick")
-        {
-            QuickSort(test, 0, test.Count - 1);
-        }
-        //PrintList(weaponsList);
+        PrintList(weaponsList);
     }
 }
 
@@ -66,6 +65,10 @@ bool SortAlphabet(Weapon indexLeft, Weapon indexRight)
 }
 
 #endregion
+
+// ##########  ##############  MERGE-SORT  ##################  ################
+
+#region MergeSort
 
 void MergeSort(List<Weapon>? list, Func<Weapon, Weapon, bool> SortMethod)
 {
@@ -136,47 +139,57 @@ void MergeSort(List<Weapon>? list, Func<Weapon, Weapon, bool> SortMethod)
     }
 }
 
-void QuickSort(List<int> list, int lowValue, int highValue)
+#endregion
+
+// ##########  ##############  QUICK-SORT  ##################  ################
+
+#region QuickSort
+
+void QuickSort(List<Weapon>? list, Func<Weapon, Weapon, bool> SortMethod)
 {
-    Console.WriteLine();
-    Console.WriteLine($"pivot: {list[highValue]}");
-    if (lowValue < highValue)
+    //Nested QuickSort para poder passar a função como parametro inicial
+    DoQuickSort(list, 0, list.Count - 1);
+    
+    void DoQuickSort(List<Weapon>? list, int lowValue, int highValue)
     {
-        Print(list);
-        int pivotID = Partition(list, lowValue, highValue);
-        Print(list);
-
-        QuickSort(list, lowValue, pivotID - 1);
-        Print(list);
-        Console.WriteLine("Running weirdo sort");
-        QuickSort(list, pivotID + 1, highValue);
-        Print(list);
-    }
-}
-
-int Partition(List<int> list, int lowValue, int highValue)
-{
-    int pivot = list[highValue];
-    int j = lowValue - 1;
-
-    for (int i = lowValue; i <= highValue - 1; i++)
-    {
-        if (list[i] < pivot)
+        if (lowValue < highValue)
         {
-            j++;
-            Swap(list, j, i);
-        }
-        // se i > pv -> pass
-        // j continua igual; i++
-    }
-    Swap(list, j + 1, highValue);
+            //Print(list);
+            int pivotID = Partition(list, lowValue, highValue);
+            //Print(list);
 
-    return j + 1;
+            DoQuickSort(list, lowValue, pivotID - 1);
+            //Print(list);
+            DoQuickSort(list, pivotID + 1, highValue);
+            //Print(list);
+        }
+    }
+
+    int Partition(List<Weapon> list, int lowValue, int highValue)
+    {
+        Weapon pivot = list[highValue];
+        int j = lowValue - 1;
+
+        for (int i = lowValue; i <= highValue - 1; i++)
+        {
+            if (SortMethod(list[i], pivot)) //(list[i] < pivot) 
+            {
+                j++;
+                Swap(list, j, i);
+            }
+            // se i > pv -> pass
+            // j continua igual; i++
+        }
+        Swap(list, j + 1, highValue);
+
+        return j + 1;
+    }
+
 }
 
-void Swap(List<int> list, int j, int i)
+void Swap(List<Weapon> list, int j, int i)
 {
-    int temp = list[j];
+    Weapon temp = list[j];
     list[j] = list[i];
     list[i] = temp;
 }
@@ -187,3 +200,5 @@ void Print(List<int> list)
     foreach (int i in list)
         Console.Write(i);
 }
+
+#endregion
