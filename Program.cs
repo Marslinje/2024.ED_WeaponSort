@@ -1,6 +1,7 @@
 ﻿Reader getWeaponsData = new Reader();
 List<Weapon>? weaponsList = getWeaponsData.getWeapons;
 String? choosenOrder = "null";
+List<int> test = new List<int> {3, 2, 5, 0, 1, 8, 7, 6, 9, 4};
 
 StartUser();
 
@@ -30,7 +31,11 @@ void StartUser()
         {
             MergeSort(weaponsList, SortAlphabet);
         }
-        PrintList(weaponsList);
+        else if (choosenOrder == "quick")
+        {
+            QuickSort(test, 0, test.Count - 1);
+        }
+        //PrintList(weaponsList);
     }
 }
 
@@ -43,6 +48,7 @@ void PrintList(List<Weapon>? list)
     }
 }
 
+#region SortFunctions
 
 bool SortDamage(Weapon indexLeft, Weapon indexRight)
 {
@@ -58,6 +64,8 @@ bool SortAlphabet(Weapon indexLeft, Weapon indexRight)
 {
     return String.Compare(indexLeft.getName, indexRight.getName) < 0;
 }
+
+#endregion
 
 void MergeSort(List<Weapon>? list, Func<Weapon, Weapon, bool> SortMethod)
 {
@@ -128,7 +136,54 @@ void MergeSort(List<Weapon>? list, Func<Weapon, Weapon, bool> SortMethod)
     }
 }
 
-void QuickSort(List<Weapon>? list)
+void QuickSort(List<int> list, int lowValue, int highValue)
 {
-    
+    Console.WriteLine();
+    Console.WriteLine($"pivot: {list[highValue]}");
+    if (lowValue < highValue)
+    {
+        Print(list);
+        int pivotID = Partition(list, lowValue, highValue);
+        Print(list);
+
+        QuickSort(list, lowValue, pivotID - 1);
+        Print(list);
+        Console.WriteLine("Running weirdo sort");
+        QuickSort(list, pivotID + 1, highValue);
+        Print(list);
+    }
+}
+
+int Partition(List<int> list, int lowValue, int highValue)
+{
+    int pivot = list[highValue];
+    int j = lowValue - 1;
+
+    for (int i = lowValue; i <= highValue - 1; i++)
+    {
+        if (list[i] < pivot)
+        {
+            j++;
+            Swap(list, j, i);
+        }
+        // se i > pv -> pass
+        // j continua igual; i++
+    }
+    Swap(list, j + 1, highValue);
+
+    return j + 1;
+}
+
+void Swap(List<int> list, int j, int i)
+{
+    int temp = list[j];
+    list[j] = list[i];
+    list[i] = temp;
+}
+
+void Print(List<int> list)
+{
+    Console.WriteLine();
+    foreach (int i in list)
+        Console.Write(i);
 }
