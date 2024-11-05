@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Uni\\2024.ED_WeaponSort\\Project.csproj": {}
+    "D:\\Uni\\ED\\2024.ED_WeaponSort\\Project.csproj": {}
   },
   "projects": {
-    "D:\\Uni\\2024.ED_WeaponSort\\Project.csproj": {
+    "D:\\Uni\\ED\\2024.ED_WeaponSort\\Project.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Uni\\2024.ED_WeaponSort\\Project.csproj",
+        "projectUniqueName": "D:\\Uni\\ED\\2024.ED_WeaponSort\\Project.csproj",
         "projectName": "Project",
-        "projectPath": "D:\\Uni\\2024.ED_WeaponSort\\Project.csproj",
+        "projectPath": "D:\\Uni\\ED\\2024.ED_WeaponSort\\Project.csproj",
         "packagesPath": "C:\\Users\\Whillis\\.nuget\\packages\\",
-        "outputPath": "D:\\Uni\\2024.ED_WeaponSort\\obj\\",
+        "outputPath": "D:\\Uni\\ED\\2024.ED_WeaponSort\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Whillis\\AppData\\Roaming\\NuGet\\NuGet.Config"
